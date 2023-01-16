@@ -15,7 +15,7 @@ if (isset($_POST['impegno'])){
         $id = $_POST['id'];
         TodoRepository::updateTesto($impegno, $id);
     }
-    else
+    else if ($impegno != '')
         TodoRepository::add($impegno);
 }
 
