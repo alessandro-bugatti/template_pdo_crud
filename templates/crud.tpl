@@ -24,6 +24,17 @@
     <?php if ($testo != ''):?>
         <input type="hidden" name="id" value="<?=$id?>">
     <?php endif; ?>
+    <div class="form-group">
+        <select class="form-select" name="importanza">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+
+
     <button>
         <?php if ($testo == ''):?>
             Aggiungi un impegno
