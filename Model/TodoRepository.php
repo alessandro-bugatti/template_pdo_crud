@@ -7,7 +7,7 @@ class TodoRepository{
 
     public static function listAll(): array{
         $pdo = Connection::getInstance();
-        $sql = 'SELECT * FROM todo ORDER BY completato, data DESC';
+        $sql = 'SELECT * FROM todo ORDER BY completato, importanza DESC, data DESC';
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
     }
