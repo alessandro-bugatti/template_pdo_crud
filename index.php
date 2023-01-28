@@ -11,12 +11,14 @@ $template = new Engine('templates','tpl');
 //Gestisce l'aggiunta di un nuovo impegno
 if (isset($_POST['impegno'])){
     $impegno = $_POST['impegno'];
+    $importanza = $_POST['importanza'];
     if (isset($_POST['id'])){
         $id = $_POST['id'];
         TodoRepository::updateTesto($impegno, $id);
     }
-    else if ($impegno != '')
-        TodoRepository::add($impegno);
+    else if ($impegno != '') {
+        TodoRepository::add($impegno, $importanza);
+    }
 }
 
 $testo = "";
