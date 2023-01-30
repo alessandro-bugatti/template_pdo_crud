@@ -48,13 +48,26 @@ class TodoRepository{
         return $row['testo'];
     }
 
-
-    public static function updateTesto(string $testo, int $id): bool{
+    public static function getImpegno(int $id): array{
         $pdo = Connection::getInstance();
-        $sql = 'UPDATE todo SET testo = :testo WHERE id = :id';
+        $sql = 'SELECT testo, importanza FROM todo WHERE id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+                'id' => $id
+            ]
+        );
+        $row = $stmt->fetch();
+        return $row;
+    }
+
+
+    public static function updateTesto(string $testo, $importanza, int $id): bool{
+        $pdo = Connection::getInstance();
+        $sql = 'UPDATE todo SET testo = :testo, importanza = :importanza WHERE id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             'testo' => $testo,
+            'importanza' => $importanza,
             'id' => $id
         ]);
         if ($stmt->rowCount() == 1)

@@ -14,7 +14,7 @@ if (isset($_POST['impegno'])){
     $importanza = $_POST['importanza'];
     if (isset($_POST['id'])){
         $id = $_POST['id'];
-        TodoRepository::updateTesto($impegno, $id);
+        TodoRepository::updateTesto($impegno, $importanza, $id);
     }
     else if ($impegno != '') {
         TodoRepository::add($impegno, $importanza);
@@ -22,6 +22,7 @@ if (isset($_POST['impegno'])){
 }
 
 $testo = "";
+$importanza = -1;
 $id = null;
 
 if (isset($_GET['action'])){
@@ -33,7 +34,9 @@ if (isset($_GET['action'])){
     }
     //Gestisce il recupero del testo dell'impegno da modificare
     else if ($azione == 'modifica'){
-        $testo = TodoRepository::getTesto($id);
+        $impegno = TodoRepository::getImpegno($id);
+        $testo = $impegno['testo'];
+        $importanza = $impegno['importanza'];
     }
     //Gestisce l'eliminazione
     else if ($azione == 'elimina'){
@@ -46,5 +49,6 @@ $todos = TodoRepository::listAll();
 echo $template->render('crud', [
     'todos' => $todos,
     'testo' => $testo,
+    'importanza' => $importanza,
     'id' => $id
 ]);

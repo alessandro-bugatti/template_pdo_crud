@@ -5,6 +5,7 @@
  * @var $todos
  * @var $testo
  * @var $id
+ * @var $importanza
  */
 ?>
 
@@ -21,16 +22,16 @@
 <?=$this->e($testo)?>
 <?php endif;?></textarea>
     </div>
-    <?php if ($testo != ''):?>
+    <?php if ($id != null):?>
         <input type="hidden" name="id" value="<?=$id?>">
     <?php endif; ?>
     <div class="form-group">
         <select class="form-select" name="importanza">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <?php for($i = 1; $i <= 5; $i++):?>
+                <option <?php if ($importanza == $i) echo 'selected'?> >
+                    <?=$i?>
+                </option>
+            <?php endfor;?>
         </select>
     </div>
 
