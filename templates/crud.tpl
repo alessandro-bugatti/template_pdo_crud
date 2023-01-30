@@ -5,6 +5,7 @@
  * @var $todos
  * @var $testo
  * @var $id
+ * @var $importanza
  */
 ?>
 
@@ -21,9 +22,20 @@
 <?=$this->e($testo)?>
 <?php endif;?></textarea>
     </div>
-    <?php if ($testo != ''):?>
+    <?php if ($id != null):?>
         <input type="hidden" name="id" value="<?=$id?>">
     <?php endif; ?>
+    <div class="form-group">
+        <select class="form-select" name="importanza">
+            <?php for($i = 1; $i <= 5; $i++):?>
+                <option <?php if ($importanza == $i) echo 'selected'?> >
+                    <?=$i?>
+                </option>
+            <?php endfor;?>
+        </select>
+    </div>
+
+
     <button>
         <?php if ($testo == ''):?>
             Aggiungi un impegno
@@ -37,6 +49,7 @@
     <thead>
         <tr>
             <th>Da fare</th>
+            <th>Importanza</th>
             <th>Data</th>
             <th>Completato</th>
             <th>Modifica</th>
@@ -53,6 +66,7 @@
                     <?=$this->e($todo['testo'])?>
                 <?php endif;?>
             </td>
+            <td><?=$todo['importanza']?></td>
             <td><?=date('d-m-Y', strtotime($todo['data']))?></td>
             <?php if($todo['completato'] == 1):?>
                 <td><i class="icon icon-check text-success"></i></td>

@@ -7,17 +7,18 @@ class TodoRepository{
 
     public static function listAll(): array{
         $pdo = Connection::getInstance();
-        $sql = 'SELECT * FROM todo ORDER BY completato, data DESC';
+        $sql = 'SELECT * FROM todo ORDER BY completato, importanza DESC, data DESC';
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
     }
 
-    public static function add(string $testo): int{
+    public static function add(string $testo, int $importanza): int{
         $pdo = Connection::getInstance();
-        $sql = 'INSERT INTO todo (testo) VALUES (:testo)';
+        $sql = 'INSERT INTO todo (testo, importanza) VALUES (:testo,:importanza)';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-                'testo' => $testo
+                'testo' => $testo,
+                'importanza' => $importanza
             ]
         );
         return $stmt->rowCount();
@@ -47,13 +48,26 @@ class TodoRepository{
         return $row['testo'];
     }
 
-
-    public static function updateTesto(string $testo, int $id): bool{
+    public static function getImpegno(int $id): array{
         $pdo = Connection::getInstance();
-        $sql = 'UPDATE todo SET testo = :testo WHERE id = :id';
+        $sql = 'SELECT testo, importanza FROM todo WHERE id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+                'id' => $id
+            ]
+        );
+        $row = $stmt->fetch();
+        return $row;
+    }
+
+
+    public static function updateTesto(string $testo, $importanza, int $id): bool{
+        $pdo = Connection::getInstance();
+        $sql = 'UPDATE todo SET testo = :testo, importanza = :importanza WHERE id = :id';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             'testo' => $testo,
+            'importanza' => $importanza,
             'id' => $id
         ]);
         if ($stmt->rowCount() == 1)
