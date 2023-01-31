@@ -25,7 +25,7 @@
         <div class="form-group">
             <div class="col-3 col-sm-12">
                 <label class="form-checkbox">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="Ctarga">
                     <i class="form-icon"></i> Targa del veicolo
                 </label>
             </div>
@@ -37,14 +37,17 @@
         <div class="form-group">
             <div class="col-3 col-sm-12">
                 <label class="form-checkbox">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="Cmarca">
                     <i class="form-icon"></i> Marca del veicolo
                 </label>
             </div>
             <div class="col-4 col-sm-12">
                 <select class="form-select select" name="marca">
                     <?php foreach ($marche as $marca): ?>
-                        <option><?= $marca['marca'] ?></option>
+                        <option>
+                            <?= $marca['marca'] ?>
+                        </option>
+
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -56,7 +59,7 @@
         <div class="form-group">
             <div class="col-3 col-sm-12">
                 <label class="form-checkbox">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" name="Cmodello">
                     <i class="form-icon"></i> Modello del veicolo
                 </label>
             </div>
@@ -74,8 +77,8 @@
 
         <div class="form-group">
             <div class="col-3 col-sm-12">
-                <label class="form-checkbox" for="cerca">
-                    <input type="checkbox" checked>
+                <label class="form-checkbox">
+                    <input type="checkbox" name="Ccolore">
                     <i class="form-icon"></i> Colore del veicolo
                 </label>
             </div>
@@ -90,7 +93,7 @@
                 <input class="form-input" name="Acolore" type="text" id="colore" placeholder="Colore parziale">
             </div>
         </div>
-        <h5>Se di un campo conosci solo i dati parziali puoi inserire il - per un carattere oppure il * per più
+        <h5>Se di un campo conosci solo i dati parziali puoi inserire il "-" per un carattere oppure il "*" per più
             caratteri</h5>
         <input type="submit" class="btn btn-primary" id="cerca" value="Cerca il veicolo">
     </div>
