@@ -12,7 +12,7 @@
 
 <h1>Cose da fare</h1>
 
-<form method="post" action="index.php">
+<form method="post" action="../index_old.php">
     <div class="form-group">
         <label for="todo">
 

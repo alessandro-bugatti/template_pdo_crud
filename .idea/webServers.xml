@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f00c7cd9-7d4c-4003-9b30-64ea024741c9" name="xampp" url="http://localhost/ricerca_targhe">
+        <fileTransfer mountedRoot="C:\xampp\htdocs\ricerca_targhe" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
