@@ -1,6 +1,6 @@
 <?php
 
 const DB_HOST = 'host';
-const DB_NAME = 'db_name';
-const DB_USER = 'user';
+const DB_NAME = 'vehicles_data';
+const DB_USER = 'username';
 const DB_PASSWORD = 'password';
