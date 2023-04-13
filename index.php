@@ -46,19 +46,20 @@ $id = null;
 if (isset($_GET['action'])){
     $azione = $_GET['action'];
     $id = $_GET['id'];
-    //Gestisce il completamento di un impegno
-    if ($azione == 'completa'){
-        TodoRepository::completa($id);
-    }
-    //Gestisce il recupero del testo dell'impegno da modificare
-    else if ($azione == 'modifica'){
-        $impegno = TodoRepository::getImpegno($id);
-        $testo = $impegno['testo'];
-        $importanza = $impegno['importanza'];
-    }
-    //Gestisce l'eliminazione
-    else if ($azione == 'elimina'){
-        TodoRepository::delete($id);
+    //Se l'id dell'impegno è corretto può eseguire l'azione, altrimenti no
+    if (TodoRepository::owned($id, $id_user)) {
+        //Gestisce il completamento di un impegno
+        if ($azione == 'completa') {
+            TodoRepository::completa($id);
+        } //Gestisce il recupero del testo dell'impegno da modificare
+        else if ($azione == 'modifica') {
+            $impegno = TodoRepository::getImpegno($id);
+            $testo = $impegno['testo'];
+            $importanza = $impegno['importanza'];
+        } //Gestisce l'eliminazione
+        else if ($azione == 'elimina') {
+            TodoRepository::delete($id);
+        }
     }
 }
 
