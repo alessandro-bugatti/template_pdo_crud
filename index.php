@@ -10,6 +10,9 @@ use Util\Authenticator;
 $template = new Engine('templates','tpl');
 //Fa partire il processo di autenticazione
 $user = Authenticator::getUser();
+$id_user = $user['user_id'];
+$displayed_name = $user['displayed_name'];
+
 if ($user == null){
     echo $template->render('login');
     exit(0);
@@ -65,5 +68,5 @@ echo $template->render('crud', [
     'testo' => $testo,
     'importanza' => $importanza,
     'id' => $id,
-    'displayed_name' => $user['displayed_name']
+    'displayed_name' => $displayed_name
 ]);
