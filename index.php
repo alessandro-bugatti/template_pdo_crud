@@ -15,8 +15,13 @@ if ($user == null){
     exit(0);
 }
 
-
-
+if (isset($_GET['action'])){
+    if (($_GET['action']) == 'logout'){
+        Authenticator::logout();
+        echo $template->render('login');
+        exit(0);
+    }
+}
 //Gestisce l'aggiunta di un nuovo impegno
 if (isset($_POST['impegno'])){
     $impegno = $_POST['impegno'];
@@ -59,5 +64,6 @@ echo $template->render('crud', [
     'todos' => $todos,
     'testo' => $testo,
     'importanza' => $importanza,
-    'id' => $id
+    'id' => $id,
+    'displayed_name' => $user['displayed_name']
 ]);

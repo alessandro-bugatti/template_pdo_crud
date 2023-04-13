@@ -45,4 +45,12 @@ class Authenticator{
         return $_SESSION;
     }
 
+    public static function logout()
+    {
+        self::start();
+        $_SESSION = [];
+        session_destroy();
+    }
+
+
 }

@@ -6,10 +6,28 @@
  * @var $testo
  * @var $id
  * @var $importanza
+ * @var $displayed_name
  */
 ?>
 
 <?php $this->layout('home', ['titolo' => 'Esempio CRUD']) ?>
+
+<header class="navbar">
+    <section class="navbar-section">
+
+    </section>
+
+    <section class="navbar-section">
+        <span class="label label-rounded label-primary m-2">
+            Hello <?=$displayed_name?>
+        </span>
+        <button class="btn btn-action tooltip tooltip-bottom" data-tooltip="Logout">
+            <a href="index.php?action=logout">
+                <i class="icon icon-share"></i>
+            </a>
+        </button>
+    </section>
+</header>
 
 <h1>Cose da fare</h1>
 
