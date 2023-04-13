@@ -5,8 +5,16 @@ require_once 'conf/config.php';
 
 use League\Plates\Engine;
 use Model\TodoRepository;
+use Util\Authenticator;
 
 $template = new Engine('templates','tpl');
+//Fa partire il processo di autenticazione
+if (!Authenticator::user_ok()){
+    echo $template->render('login');
+    exit(0);
+}
+
+
 
 //Gestisce l'aggiunta di un nuovo impegno
 if (isset($_POST['impegno'])){
