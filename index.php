@@ -9,7 +9,8 @@ use Util\Authenticator;
 
 $template = new Engine('templates','tpl');
 //Fa partire il processo di autenticazione
-if (!Authenticator::user_ok()){
+$user = Authenticator::getUser();
+if ($user == null){
     echo $template->render('login');
     exit(0);
 }
