@@ -23,6 +23,18 @@ class TodoRepository{
         return $stmt->fetchAll();
     }
 
+    public static function owned(string $id_todo, int $id_user): bool{
+        $pdo = Connection::getInstance();
+        $sql = 'SELECT id FROM todo WHERE id = :id AND id_user = :id_user';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+                'id' => $id_todo,
+                'id_user' => $id_user
+            ]
+        );
+        return ($stmt->rowCount() == 1);
+    }
+
     public static function add(string $testo, int $importanza): int{
         $pdo = Connection::getInstance();
         $sql = 'INSERT INTO todo (testo, importanza) VALUES (:testo,:importanza)';
