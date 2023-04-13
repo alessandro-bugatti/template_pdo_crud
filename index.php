@@ -58,7 +58,7 @@ if (isset($_GET['action'])){
     }
 }
 
-$todos = TodoRepository::listAll();
+$todos = TodoRepository::listAllByUser($user['user_id']);
 
 echo $template->render('crud', [
     'todos' => $todos,

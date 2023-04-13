@@ -12,6 +12,17 @@ class TodoRepository{
         return $stmt->fetchAll();
     }
 
+    public static function listAllByUser(int $id): array{
+        $pdo = Connection::getInstance();
+        $sql = 'SELECT * FROM todo WHERE id_user=:id ORDER BY completato, importanza DESC, data DESC';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+                'id' => $id,
+            ]
+        );
+        return $stmt->fetchAll();
+    }
+
     public static function add(string $testo, int $importanza): int{
         $pdo = Connection::getInstance();
         $sql = 'INSERT INTO todo (testo, importanza) VALUES (:testo,:importanza)';
