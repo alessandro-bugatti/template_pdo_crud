@@ -31,12 +31,11 @@ if (isset($_POST['impegno'])){
     $importanza = $_POST['importanza'];
     if (isset($_POST['id'])){
         $id = $_POST['id'];
-
         if (TodoRepository::owned($id, $id_user))
             TodoRepository::updateTesto($impegno, $importanza, $id);
     }
     else if ($impegno != '') {
-        TodoRepository::add($impegno, $importanza);
+        TodoRepository::add($impegno, $importanza, $id_user);
     }
 }
 

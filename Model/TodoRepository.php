@@ -35,13 +35,14 @@ class TodoRepository{
         return ($stmt->rowCount() == 1);
     }
 
-    public static function add(string $testo, int $importanza): int{
+    public static function add(string $testo, int $importanza, int $id_user): int{
         $pdo = Connection::getInstance();
-        $sql = 'INSERT INTO todo (testo, importanza) VALUES (:testo,:importanza)';
+        $sql = 'INSERT INTO todo (testo, importanza, id_user) VALUES (:testo,:importanza, :id_user)';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
                 'testo' => $testo,
-                'importanza' => $importanza
+                'importanza' => $importanza,
+                'id_user' => $id_user
             ]
         );
         return $stmt->rowCount();
